@@ -8,8 +8,8 @@
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
-            "program": "${cwd}/day2/rock_paper_scissors.py",
-            "args": "${cwd}/day2/guide_sample.txt",
+            "program": "${cwd}/day4/camp_cleanup.py",
+            "args": "${cwd}/day4/assignments_sample.txt",
             "console": "integratedTerminal",
             "justMyCode": true
         }
