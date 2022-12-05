@@ -1,5 +1,4 @@
 import sys
-from typing import Type
 
 def main():
     fileName = sys.argv[1]
