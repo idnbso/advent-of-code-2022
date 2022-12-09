@@ -8,8 +8,8 @@
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
-            "program": "${cwd}/day5/supply_stacks.py",
-            "args": "${cwd}/day5/rearrangements_sample.txt",
+            "program": "${cwd}/day8/treetop_tree_house.py",
+            "args": "${cwd}/day8/trees_heights_map_sample.txt",
             "console": "integratedTerminal",
             "justMyCode": true
         }
