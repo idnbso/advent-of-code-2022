@@ -71,7 +71,7 @@ class DirectoriesCalculator:
         used_space = self.directories_sizes["/"]
         unused_space = TOTAL_FILESYSTEM_SIZE - used_space
         min_dir_size_to_delete = list(self.directories_sizes.values())[0]
-        for directory, size in self.directories_sizes.items():
+        for _, size in self.directories_sizes.items():
             if unused_space + size >= UPDATE_INSTALLATION_SIZE and \
                 size < min_dir_size_to_delete:
                 min_dir_size_to_delete = size
