@@ -8,8 +8,8 @@
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
-            "program": "${cwd}/day10/cathode_ray_tube.py",
-            "args": "${cwd}/day10/program_sample.txt",
+            "program": "${cwd}/day11/monkey_in_the_middle.py",
+            "args": "${cwd}/day11/input.txt",
             "console": "integratedTerminal",
             "justMyCode": true
         }
