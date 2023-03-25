@@ -19,10 +19,8 @@ def main():
         input_lines = [line.strip() for line in file.readlines()]
 
     heightmap = Heightmap(input_lines)
+    print(heightmap.get_shortest_path_from_start_to_best_signal())
     print(heightmap.get_shortest_path_to_best_signal())
-
-    #heightmap.print_heightmap()
-    pass
 
 
 class Heightmap:
@@ -63,11 +61,11 @@ class Heightmap:
                     self.adjacency_list[(row, col)].append((d_row, d_col))
 
 
-    def get_shortest_path_to_best_signal(self) -> int:
+    def get_shortest_path_from_start_to_best_signal(self) -> int:
         predecessors = [[0 for _ in range(self.total_cols)] for _ in range(self.total_rows)]
         distances = [[0 for _ in range(self.total_cols)] for _ in range(self.total_rows)]
   
-        if (self.bfs(predecessors, distances) == False):
+        if (self.bfs(predecessors, distances, self.start_row, self.start_col) == False):
             print("Given source and destination are not connected")
     
         path = []
@@ -80,8 +78,26 @@ class Heightmap:
 
         return distances[self.end_row][self.end_col]
 
+    def get_shortest_path_to_best_signal(self) -> int:
+        starting_positions_distances = dict()
+        for row in range(self.total_rows):
+            for col in range(self.total_cols):
+                if self.map[row][col] == 'a':
+                    starting_positions_distances[(row, col)] = math.inf
+        
+        for starting_position in starting_positions_distances:
+            predecessors = [[0 for _ in range(self.total_cols)] for _ in range(self.total_rows)]
+            distances = [[0 for _ in range(self.total_cols)] for _ in range(self.total_rows)]
+    
+            if (self.bfs(predecessors, distances, starting_position[0], starting_position[1]) == False):
+                print("Given source and destination are not connected")
 
-    def bfs(self, predecessors, distances):
+            starting_positions_distances[starting_position] = distances[self.end_row][self.end_col]
+    
+        return min(starting_positions_distances.values())
+
+
+    def bfs(self, predecessors, distances, start_row, start_col):
         # initialize search state
         queue = []
         visited = [[False for _ in range(self.total_cols)] for _ in range(self.total_rows)]
@@ -92,9 +108,9 @@ class Heightmap:
                 predecessors[row][col] = -1
         
         # handle source vertex
-        visited[self.start_row][self.start_col] = True
-        distances[self.start_row][self.start_col] = 1
-        queue.append((self.start_row, self.start_col))
+        visited[start_row][start_col] = True
+        distances[start_row][self.start_col] = 1
+        queue.append((start_row, start_col))
 
         # breadth first search
         while (len(queue) != 0):
